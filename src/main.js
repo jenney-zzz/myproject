@@ -10,10 +10,13 @@ import vueRouter from 'vue-router';
 Vue.use(vueRouter);
 
 // 3.0.2 导入路由规则对应的组件对象
-import home from './components/home.vue';
-import shopcar from './components/shopcar/shopcar.vue';
+import home from './components/home.vue';  //首页
+import shopcar from './components/shopcar/shopcar.vue';    //购物车
 
-import newslist from './components/news/newslist.vue';
+import newslist from './components/news/newslist.vue';   //导入路径 首页-新闻列表
+import newsinfo from './components/news/newsinfo.vue';   //导入路径 首页-新闻列表-新闻详情页
+
+
 import photo from './components/photo/photolist.vue';
 import goods from './components/goods/goodslist.vue';
 import message from './components/message/messagelist.vue';
@@ -24,14 +27,17 @@ var router1 = new vueRouter({
 	linkActiveClass:"mui-active",
 	routes:[
 		{path:'/home',component:home},//path是App.vue中router-link中to后面的名字一致,且这个路径就是地址栏后面的
-		// component是13行import中变量的名字home，不需要/
+		// component是import中变量的名字home，且不需要/
 		{path:'/shopcar/shopcar',component:shopcar},
-		{path:'/news/newslist',component:newslist},
+		{path:'/news/newslist',component:newslist},  //首页-新闻列表
+		{path:'/news/newsinfo/13',component:newsinfo},  //首页-新闻列表-新闻详情页
+
 		{path:'/photo/photo',component:photo},
 		{path:'/goods/goodslist',component:goods},
 		{path:'/message/messagelist',component:message},
 		{path:'/video/videolist',component:video},
 		{path:'/callme/callmelist',component:callme},
+
 	]
 	});
 
@@ -53,6 +59,12 @@ import '../statics/css/site.css';
 import vueResource from 'vue-resource';
 Vue.use(vueResource);
 
+//导入moment
+import moment from 'moment'
+//定义一个全局的过滤器
+Vue.filter('datefmt',function (input,string) {
+	return moment(input).format(string)
+})
 // 利用Vue对象进行解析渲染
 new Vue({
 	el:'#app',

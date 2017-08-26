@@ -3,17 +3,18 @@
         <ul class="mui-table-view">
             <li class="mui-table-view-cell mui-media"
                     v-for="item in list">
-                <a href="javascript:;">
+                <!--<router-link v-bind="{to:'/news/newsinfo/'+id}">-->
+                <router-link to="/news/newsinfo/13">
                     <img class="mui-media-object mui-pull-left" :src="item.img_url">
                     <div class="mui-media-body">
                         {{item.title}}
                         <p class='mui-ellipsis'>{{item.zhaiyao}}</p>
                         <div class="ft">
-                            <span>发布时间：{{item.add_time}}</span>
+                            <span>发布时间：{{item.add_time|datefmt('YYYY-MM-DD HH:mm:ss')}}</span>
                             <span class="click">点击数量:{{item.click}}</span>
                         </div>
                     </div>
-                </a>
+                </router-link>
             </li>
         </ul>
     </div>
@@ -24,6 +25,7 @@
     export default {
         data: function () {
             return {
+                val:0,
                 list: []
             }
         },
