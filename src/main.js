@@ -59,12 +59,18 @@ import '../statics/css/site.css';
 import vueResource from 'vue-resource';
 Vue.use(vueResource);
 
-//导入moment
+//8导入moment组件
 import moment from 'moment'
 //定义一个全局的过滤器
 Vue.filter('datefmt',function (input,string) {
 	return moment(input).format(string)
 })
+
+//导入公共的api
+//import comman from "comman.js"
+Vue.prototype.comman={
+	apipublic:'http://www.lovegf.cn:8899'
+};
 // 利用Vue对象进行解析渲染
 new Vue({
 	el:'#app',

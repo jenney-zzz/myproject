@@ -34,7 +34,7 @@
         },
         methods: {
             getnewlist: function () {
-                this.$http.get('http://www.lovegf.cn:8899/api/getnewslist').then(function (res) {
+                this.$http.get(this.comman.apipublic+'/api/getnewslist').then(function (res) {
                     var data=res.body
                     if(data.status!=0){
                         Toast("data.message");

@@ -27,7 +27,7 @@
         },
         methods:{
             getmsg () {
-                const url='http://www.lovegf.cn:8899/api/getnew/'+this.num;
+                const url=this.comman.apipublic+'/api/getnew/'+this.num;
                 this.$http.get(url).then(function (res) {
                     if (res.body.status != 0) {
                         Toast(res.body.message);
