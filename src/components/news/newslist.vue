@@ -3,8 +3,8 @@
         <ul class="mui-table-view">
             <li class="mui-table-view-cell mui-media"
                     v-for="item in list">
-                <!--<router-link v-bind="{to:'/news/newsinfo/'+id}">-->
-                <router-link to="/news/newsinfo/13">
+                <router-link v-bind="{to:'/news/newsinfo/'+item.id}">
+                <!--<router-link to="/news/newsinfo/13">-->
                     <img class="mui-media-object mui-pull-left" :src="item.img_url">
                     <div class="mui-media-body">
                         {{item.title}}

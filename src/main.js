@@ -30,7 +30,7 @@ var router1 = new vueRouter({
 		// component是import中变量的名字home，且不需要/
 		{path:'/shopcar/shopcar',component:shopcar},
 		{path:'/news/newslist',component:newslist},  //首页-新闻列表
-		{path:'/news/newsinfo/13',component:newsinfo},  //首页-新闻列表-新闻详情页
+		{path:'/news/newsinfo/:id1',component:newsinfo},  //首页-新闻列表-新闻详情页
 
 		{path:'/photo/photo',component:photo},
 		{path:'/goods/goodslist',component:goods},
