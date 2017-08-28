@@ -56,7 +56,7 @@
     },
     methods:{
         getimgs(){
-            this.$http.get('http://www.lovegf.cn:8899/api/getlunbo')
+            this.$http.get(this.comman.apipublic+'/api/getlunbo')
                     .then(function (res) {
                         if(res.body.status!=0){
                             Toast(res.body.message);
