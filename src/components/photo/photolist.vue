@@ -9,13 +9,19 @@
         </div>
         <!-- 图片列表部分-->
         <ul id="imglist">
-            <li v-for="item in list">
-                <img v-lazy="item.img_url">
-                <div id="desc">
-                    <h5>{{item.title}}</h5>
-                    <p>{{item.zhaiyao}}</p>
-                </div>
-            </li>
+           <li v-for="item in list">
+                <router-link v-bind="{to:'/photo/photoinfo/'+item.id}">
+               <!--<router-link to="/photo/photoinfo37">-->
+                    <!-- item.id是传入的实参如37，放到main.js中的id2中保存，
+                    然后在photoinfo中以this.$route.pramas.id2来获取这个实参37并赋值给num，
+                    在getinfo中的url中就可以使用这个this.num来向服务器请求数据-->
+                    <img v-lazy="item.img_url">
+                    <div id="desc">
+                        <h5>{{item.title}}</h5>
+                        <p>{{item.zhaiyao}}</p>
+                    </div>
+                </router-link>
+           </li>
         </ul>
     </div>
 </template>
@@ -26,7 +32,7 @@
             return{
                 cates:[],
                 ulwidth:"",
-                list:[]
+                list:[],
             }
         },
         created(){

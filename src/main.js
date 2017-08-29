@@ -17,7 +17,9 @@ import newslist from './components/news/newslist.vue';   //导入路径 首页-�
 import newsinfo from './components/news/newsinfo.vue';   //导入路径 首页-新闻列表-新闻详情页
 
 
-import photo from './components/photo/photolist.vue';
+import photo from './components/photo/photolist.vue';       //首页-图片分享-图片列表
+import photoinfo from "./components/photo/photoinfo.vue"    //首页-图片分享-图片列表-图片详情页
+
 import goods from './components/goods/goodslist.vue';
 import message from './components/message/messagelist.vue';
 import video from './components/video/videolist.vue';
@@ -28,14 +30,17 @@ var router1 = new vueRouter({
 	routes:[
 		//redirect表示路由重定向
 		{path:'/',redirect:'/home'},//默认进入home界面
-		{path:"*",redirect:"/home"},//*表示任何路由，这句表示路由输入错误的时候，跳到指定的页面，一般是404页面，这里先写首页页面
+		//{path:"*",redirect:"/home"},//*表示任何路由，这句表示路由输入错误的时候，跳到指定的页面，一般是404页面，这里先写首页页面
 		{path:'/home',component:home},//path是App.vue中router-link中to后面的名字一致,且这个路径就是地址栏后面的
 		// component是import中变量的名字home，且不需要/
+
 		{path:'/shopcar/shopcar',component:shopcar},
 		{path:'/news/newslist',component:newslist},  //首页-新闻列表
 		{path:'/news/newsinfo/:id1',component:newsinfo},  //首页-新闻列表-新闻详情页
 
 		{path:'/photo/photolist',component:photo}, //首页-图片分享-图片列表
+		{path:'/photo/photoinfo/:id2',component:photoinfo}, //首页-图片分享-图片列表-图片详情页
+
 		{path:'/goods/goodslist',component:goods},
 		{path:'/message/messagelist',component:message},
 		{path:'/video/videolist',component:video},
