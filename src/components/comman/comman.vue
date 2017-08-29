@@ -4,7 +4,7 @@
             <h3>提交评论</h3>
             <p class="p"></p>
             <textarea placeholder="请输入评论内容" v-model="content"></textarea>
-            <mt-button type="primary" size="large" @click="postcomman()">发表</mt-button>
+            <mt-button type="primary" size="large" @click="postcomman">发表</mt-button>
         </div>
         <div id="list">
             <h3>评论详情</h3>
@@ -37,7 +37,7 @@
         },
         created(){
             this.postcomman(this.pageindex);
-            this.getlist(this.index);
+//            this.getlist(this.index);
         },
         methods:{
 
@@ -50,7 +50,7 @@
                         Toast(res.body.message);
                         return;
                     }
-                    this.list=res.body.message;
+                    this.list=this.list.concat(res.body.message);
                 })
             },
             //提交评论数据
@@ -70,7 +70,7 @@
             },
             getmore:function(){
                 this.pageindex++;
-                this.postcomman(this.pageindex);
+                this.getlist(this.pageindex);
             }
         }
     }

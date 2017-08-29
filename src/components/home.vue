@@ -1,11 +1,12 @@
 <template>
     <div id="tmpl">
         <!-- 轮播图部分-->
-        <mt-swipe :auto="4000">
+        <slider :imgs="list"></slider>
+        <!--<mt-swipe :auto="4000">
             <mt-swipe-item v-for="item in list">
                 <img :src="item.img" alt=""/>
             </mt-swipe-item>
-        </mt-swipe>
+        </mt-swipe>-->
         <!-- 九宫格部分-->
         <div class="mui-content">
             <ul class="mui-table-view mui-grid-view mui-grid-9">
@@ -45,7 +46,12 @@
 </template>
 <script>
     import {Toast} from 'mint-ui';
+    import slider from './public/slider.vue'
     export default{
+        //注册子组件
+        components:{
+            slider,
+        },
         data: function () {
             return {
                 list:[ ]

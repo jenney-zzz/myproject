@@ -20,7 +20,9 @@ import newsinfo from './components/news/newsinfo.vue';   //导入路径 首页-�
 import photo from './components/photo/photolist.vue';       //首页-图片分享-图片列表
 import photoinfo from "./components/photo/photoinfo.vue"    //首页-图片分享-图片列表-图片详情页
 
-import goods from './components/goods/goodslist.vue';
+import goodslist from './components/goods/goodslist.vue';   //商品购买-商品列表
+import goodsinfo from './components/goods/goodsinfo.vue';   //商品购买-商品列表-商品详情
+
 import message from './components/message/messagelist.vue';
 import video from './components/video/videolist.vue';
 import callme from './components/callme/callmelist.vue';
@@ -41,7 +43,9 @@ var router1 = new vueRouter({
 		{path:'/photo/photolist',component:photo}, //首页-图片分享-图片列表
 		{path:'/photo/photoinfo/:id2',component:photoinfo}, //首页-图片分享-图片列表-图片详情页
 
-		{path:'/goods/goodslist',component:goods},
+		{path:'/goods/goodslist',component:goodslist},  //商品购买-商品列表
+		{path:'/goods/goodsinfo/:id3',component:goodsinfo},  //商品购买-商品列表-商品详情
+
 		{path:'/message/messagelist',component:message},
 		{path:'/video/videolist',component:video},
 		{path:'/callme/callmelist',component:callme},
