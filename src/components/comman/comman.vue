@@ -3,7 +3,7 @@
         <div id="title">
             <h3>提交评论</h3>
             <p class="p"></p>
-            <textarea placeholder="请输入评论内容" v-model="content"></textarea>
+            <textarea placeholder="请输入评论内容" v-model="aa"></textarea>
             <mt-button type="primary" size="large" @click="postcomman">发表</mt-button>
         </div>
         <div id="list">
@@ -30,17 +30,31 @@
         props:['val'],  //接收父组件newsinfo所传的值
         data: function () {
             return {
-                content:"",
+                aa:"",
                 list:[],
                 pageindex:1
             }
         },
         created(){
-            this.postcomman(this.pageindex);
-//            this.getlist(this.index);
+            this.getlist(this.pageindex);
         },
         methods:{
-
+            //提交评论数据
+            postcomman() {
+                if(this.aa.length<=0){
+                    Toast("您输入的评论内容不能为空");
+                    return;//没有输入内容就返回，以下内容就不执行
+                }
+                var url=this.comman.apipublic+'/api/postcomment/'+this.val;
+                this.$http.post(url,{content:this.content},{emulateJSON:true}).then(function (res) {
+                    //因为api文档中提交评论信息，无论是否提交成功status都是0
+                    Toast(res.body.message);
+                    var arr=[{"user_name":"匿名用户","add_time":new Date(),"content":this.aa}];
+                    this.list=arr.concat(this.list);
+                    console.log(this.list);
+                    this.aa=""; //提交评论后，填写评论区置空
+                })
+            },
             //获取评论数据
             getlist:function(pageindex){
                 pageindex=pageindex||1;
@@ -53,25 +67,10 @@
                     this.list=this.list.concat(res.body.message);
                 })
             },
-            //提交评论数据
-            postcomman: function () {
-                if(this.content.length<=0){
-                    Toast("您输入的评论内容不能为空");
-                    return;//没有输入内容就返回，以下内容就不执行
-                }
-                var url=this.comman.apipublic+'/api/postcomment/'+this.val;
-                this.$http.post(url,{content:this.content},{emulataJSON:true}).then(function (res) {
-                    //因为api文档中提交评论信息，无论是否提交成功status都是0
-                    Toast(res.body.message);
-                    var arr=[{"user_name":"匿名用户","add_time":new Date(),"content":this.content}];
-                    this.list=arr.concat(this.list);
-                    this.content=""; //提交评论后，填写评论区置空
-                })
-            },
             getmore:function(){
                 this.pageindex++;
                 this.getlist(this.pageindex);
-            }
+            },
         }
     }
 </script>

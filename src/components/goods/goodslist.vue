@@ -1,8 +1,9 @@
 <template>
     <div id='tmpl'>
+        <mt-loadmore :autoFill="false" :allLoaded="false" :top-method="loadTop" :bottom-method="loadBottom" :bottom-all-loaded="allLoaded" ref="loadmore">
         <div id="mui-content" class="mui-content" style="background-color:#fff">
-            <ul class="mui-table-view mui-grid-view">
 
+                <ul class="mui-table-view mui-grid-view">
                 <li v-for="item in list" class="mui-table-view-cell mui-media mui-col-xs-6">
                     <router-link v-bind="{to:'/goods/goodsinfo/'+item.id}">
                         <img class="mui-media-object" :src="item.img_url">
@@ -19,11 +20,10 @@
                         </div>
 
                     </router-link>
-
                 </li>
-
-            </ul>
+                </ul>
         </div>
+        </mt-loadmore>
     </div>
 </template>
 <script>
@@ -32,28 +32,49 @@
     export default{
         data(){
         return {
-            list:[]
+            list:[],
+            allLoaded:false,
+            pageindex:1
         }
     },
     created(){
         this.getlist();
+//        this.loadTop();
     },
     methods:{
+        loadTop() {
+            console.log("下拉");
+            this.pageindex=1;
+            this.getlist()
+        },
+        loadBottom() {
+            console.log("上拉");
+            this.pageindex++;
+//            this.allLoaded = true;// 若数据已全部获取完毕
+            this.getlist();
+        },
         getlist(){
             // 获取到商品列表数据
-            var url = this.comman.apipublic + '/api/getgoods?pageindex=1';
+            var url = this.comman.apipublic + '/api/getgoods?pageindex='+this.pageindex;
 
             this.$http.get(url).then(function(res){
                 if(res.body.status != 0 ){
                     Toast(res.body.message);
                     return;
                 }
+                if(this.pageindex==1){
+                    this.$refs.loadmore.onTopLoaded();
+                    this.list=res.body.message;
+                }else{
+                    this.$refs.loadmore.onBottomLoaded();
+                    // 当服务器返回了正常数据的时候做赋值操作
+                    this.list = this.list.concat(res.body.message);
+                }
 
-                // 当服务器返回了正常数据的时候做赋值操作
-                this.list = res.body.message;
             });
-        }
-    }
+        },
+
+    },
     }
 
 </script>

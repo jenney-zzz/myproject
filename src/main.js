@@ -23,6 +23,7 @@ import photoinfo from "./components/photo/photoinfo.vue"    //首页-图片分�
 import goodslist from './components/goods/goodslist.vue';   //商品购买-商品列表
 import goodsinfo from './components/goods/goodsinfo.vue';   //商品购买-商品列表-商品详情
 import goodsdesc from './components/goods/goodsdesc.vue';   //商品购买-商品列表-商品详情-商品描述
+import goodscomment from './components/goods/goodscomment.vue';   //商品购买-商品列表-商品详情-商品评论
 
 import message from './components/message/messagelist.vue';
 import video from './components/video/videolist.vue';
@@ -47,6 +48,7 @@ var router1 = new vueRouter({
 		{path:'/goods/goodslist',component:goodslist},  //商品购买-商品列表
 		{path:'/goods/goodsinfo/:id3',component:goodsinfo},  //商品购买-商品列表-商品详情
 		{path:'/goods/goodsdesc/:id4',component:goodsdesc},  //商品购买-商品列表-商品详情-商品描述
+		{path:'/goods/goodscomment/:id5',component:goodscomment},  //商品购买-商品列表-商品详情-商品评论
 
 		{path:'/message/messagelist',component:message},
 		{path:'/video/videolist',component:video},
